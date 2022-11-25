@@ -15,6 +15,7 @@
     "axios": "^0.26.1",
     "buffer": "*",
     "expo": "~46.0.17",
+    "expo-cli": "^6.0.8",
     "expo-constants": "~13.2.4",
     "expo-linear-gradient": "~11.4.0",
     "expo-status-bar": "~1.4.0",
