@@ -1,9 +1,10 @@
 import * as React from "react";
 import { useState, useCallback } from "react";
-import { StyleSheet, View, Image, Pressable, Text, Textinput, Modal } from "react-native";
+import { StyleSheet, View, Image, Pressable, Text, TextInput, Modal } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Addclothfin from "../components/addclothfin";
 import DropdownList from "../components/DropdownList";
+import Layout from "./layout";
 
 const AddClothesInfo = () => {
   const navigation = useNavigation();
@@ -27,73 +28,17 @@ const AddClothesInfo = () => {
     setOutlineArrowsAltArrowDVisible(false);
   }, []);
   return (
-    <>
-      <View style={styles.addClothesInfo}>
-        <View style={styles.menuView}>
-          <View style={styles.notificationView}>
-            <View style={styles.rectangleView} />
-            <Image
-              style={styles.notificationIcon}
-              resizeMode="cover"
-              source={require("../assets/notification.png")}
-            />
-          </View>
-          <Pressable
-            style={styles.pressable}
-            onPress={() => navigation.navigate("MainPage")}
-          >
-            <View style={styles.rectangleView1} />
-            <Image
-              style={styles.arrowLeft}
-              resizeMode="cover"
-              source={require("../assets/left-arrow.png")}
-            />
-          </Pressable>
-          <View style={styles.view}>
-            <Text style={styles.wed15SeptemperText}>Add Clothes</Text>
-          </View>
-        </View>
-        <View style={styles.view1}>
-          <View style={styles.navigationBarView} />
-          <View style={styles.rectangleView2} />
-          <View style={styles.frameView}>
-            <Image
-              style={styles.brokenEssentionalUIHom}
-              resizeMode="cover"
-              source={require("../assets/home.png")}
-            />
-            <Pressable
-              style={[styles.calendarPressable, styles.ml74]}
-              onPress={() => navigation.navigate("OverallStylerReservation")}
-            >
-              <Image
-                style={styles.icon}
-                resizeMode="cover"
-                source={require("../assets/timetable.png")}
-              />
-            </Pressable>
-            <Image
-              style={[styles.boldEssentionalUIHange, styles.ml74]}
-              resizeMode="cover"
-              source={require("../assets/closet.png")}
-            />
-            <Pressable
-              style={[styles.userPressable, styles.ml74]}
-              onPress={() => navigation.navigate("MyPage")}
-            >
-              <Image
-                style={styles.icon1}
-                resizeMode="cover"
-                source={require("../assets/user.png")}
-              />
-            </Pressable>
-          </View>
+    <Layout title={'Add clothes'}>
+      <View style={styles.addClothesInfo}>         
         </View>
         <Text style={styles.addInfoText}>Add Info</Text>
+        
         <Pressable style={styles.groupPressable} onPress={openGroupContainer}>
           <View style={styles.rectangleView3} />
           <Text style={styles.text}>등록하기</Text>
         </Pressable>
+
+        <View style={styles.pictureview}>
         <Image
           style={styles.ellipseIcon}
           resizeMode="cover"
@@ -104,37 +49,41 @@ const AddClothesInfo = () => {
           resizeMode="cover"
           source={require("../assets/addpic.png")}
         />
+        </View>
+
         <View style={styles.groupView1}>
           <Text style={styles.text1}>제품명</Text>
           <View style={styles.groupView}>
             <View style={styles.rectangleView4} />
-            <Textinput
+            <TextInput
              style={styles.inputtext1}
             placeholder="제품명을 입력하세요"
             onChangeText={newText=>setText(newText)}/>
           </View>
         </View>
+
         <View style={styles.groupView3}>
           <Text style={styles.text3}>품번(선택)</Text>
           <View style={styles.groupView2}>
             <View style={styles.rectangleView5} />
-            <Textinput
+            <TextInput
              style={styles.inputtext2}
             placeholder="제품번호를 입력하세요"
             onChangeText={newText=>setText(newText)}/>
           </View>
         </View>
+
         <View style={styles.groupView5}>
           <Text style={styles.text5}>브랜드명</Text>
           <View style={styles.groupView4}>
             <View style={styles.rectangleView6} />
-            <Textinput
+            <TextInput
              style={styles.inputtext3}
             placeholder="브랜드를 입력하세요"
             onChangeText={newText=>setText(newText)}/>
           </View>
           </View>
-        </View>
+      
         <View style={styles.groupView7}>
           <Text style={styles.text7}>분류</Text>
           <View style={styles.groupView6}>
@@ -177,7 +126,7 @@ const AddClothesInfo = () => {
           <DropdownList onClose={closeOutlineArrowsAltArrowD} />
         </View>
       </Modal>
-    </>
+    </Layout>
   );
 };
 
@@ -387,7 +336,7 @@ const styles = StyleSheet.create({
   },
   addInfoText: {
     position: "absolute",
-    top: 136,
+    top: 40,
     left: 31,
     fontSize: 22,
     letterSpacing: -1.1,
@@ -400,10 +349,10 @@ const styles = StyleSheet.create({
   },
   rectangleView3: {
     position: "absolute",
-    top: 0,
+    top: 20,
     left: 0,
     borderRadius: 50,
-    shadowColor: "rgba(0, 0, 0, 0.25)",
+    shadowColor: "rgba(0, 0, 0, 0.5)",
     shadowOffset: {
       width: 0,
       height: 4,
@@ -411,15 +360,22 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 4,
     shadowOpacity: 1,
-    width: 118,
-    height: 40,
+    backgroundColor: "rgba(165,0,52,1)",
+    width: 145,
+    height: 36,
   },
+  groupPressable: {
+    position: "absolute",
+    top: 555,
+    left: 120,
+    width: 118,
+    height: 35,
+  }, 
   text: {
     position: "absolute",
-    top: 9,
-    left: 0,
+    top: 30,
+    left: 15,
     fontSize: 16,
- 
     color: "#fff",
     textAlign: "center",
     display: "flex",
@@ -428,13 +384,7 @@ const styles = StyleSheet.create({
     width: 118,
     height: 22,
   },
-  groupPressable: {
-    position: "absolute",
-    top: 697,
-    left: 136,
-    width: 118,
-    height: 40,
-  },
+
   ellipseIcon: {
     position: "absolute",
     top: 206,
@@ -497,7 +447,7 @@ const styles = StyleSheet.create({
   },
   groupView1: {
     position: "absolute",
-    top: 328,
+    top: 250,
     left: 31,
     width: 328,
     height: 64.2,
@@ -549,7 +499,7 @@ const styles = StyleSheet.create({
   },
   groupView3: {
     position: "absolute",
-    top: 414,
+    top:330,
     left: 31,
     width: 328,
     height: 64.2,
@@ -601,7 +551,7 @@ const styles = StyleSheet.create({
   },
   groupView5: {
     position: "absolute",
-    top: 500,
+    top: 410,
     left: 31,
     width: 328,
     height: 64.2,
@@ -651,12 +601,18 @@ const styles = StyleSheet.create({
     width: 194,
     height: 45,
   },
-  groupView7: {
+  groupView7:{
     position: "absolute",
-    top: 586,
-    left: 31,
+    top: 490,
+    left: 30,
     width: 194,
-    height: 64,
+    height: 45,
+  },
+  pictureview: {
+    position: "absolute",
+    top: -90,
+    left: 0,
+    
   },
   icon2: {
     width: "100%",
@@ -666,7 +622,7 @@ const styles = StyleSheet.create({
   outlineArrowsAltArrowD: {
     position: "absolute",
     left: 195,
-    top: 619,
+    top: 524,
     width: 16.48,
     height: 18,
   },
@@ -674,11 +630,11 @@ const styles = StyleSheet.create({
     position: "relative",
     backgroundColor: "#fff",
     borderStyle: "solid",
-    borderColor: "#000",
+    borderColor: "#FFFFFF",
     borderWidth: 1,
     flex: 1,
     width: "100%",
-    height: 844,
+    height: "100%",
     overflow: "hidden",
   },
 });

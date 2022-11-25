@@ -611,9 +611,9 @@ const styles = StyleSheet.create({
   },
   editInfoView: {
     position: "relative",
-    backgroundColor: "#fff",
+    backgroundColor: "#FFFFFF",
     borderStyle: "solid",
-    borderColor: "#000",
+    borderColor: "#FFFFFF",
     borderWidth: 1,
     flex: 1,
     width: "100%",
