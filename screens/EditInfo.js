@@ -93,7 +93,6 @@ const EditInfo = () => {
             source={require("../assets/down-arrow.png")}
           />
         </Pressable>
-        
          <Pressable style={styles.groupPressable} onPress={openGroupContainer}>
           <View style={styles.rectangleView3} />
           <Text style={styles.text}>수정하기</Text>
@@ -348,7 +347,7 @@ const styles = StyleSheet.create({
   },
   rectangleView3: {
     position: "absolute",
-    top: 0,
+    top: 20,
     left: 0,
     borderRadius: 50,
     shadowColor: "rgba(0,0,0,0.5)",
@@ -359,16 +358,22 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 4,
     shadowOpacity: 1,
-    width: 118,
+    width: 145,
     height: 40,
     backgroundColor: "rgba(165,0,52,1)",
   },
+  groupPressable: {
+    position: "absolute",
+    top: 548,
+    left: 120,
+    width: 118,
+    height: 45,
+  },
   text: {
     position: "absolute",
-    top: 12,
-    left: 0,
-    fontSize: 16,
- 
+    top: 30,
+    left: 15,
+    fontSize: 17,
     color: "#FFFFFF",
     textAlign: "center",
     display: "flex",
@@ -377,13 +382,7 @@ const styles = StyleSheet.create({
     width: 118,
     height: 22,
   },
-  groupPressable: {
-    position: "absolute",
-    top: 697,
-    left: 136,
-    width: 118,
-    height: 40,
-  },
+  
   text1: {
     position: "absolute",
     top: 0,
@@ -431,7 +430,7 @@ const styles = StyleSheet.create({
   },
   groupView1: {
     position: "absolute",
-    top: 270,
+    top: 240,
     left: 31,
     width: 328,
     height: 64.2,
@@ -482,7 +481,7 @@ const styles = StyleSheet.create({
   },
   groupView3: {
     position: "absolute",
-    top: 350,
+    top: 320,
     left: 31,
     width: 328,
     height: 64.2,
@@ -533,7 +532,7 @@ const styles = StyleSheet.create({
   },
   groupView5: {
     position: "absolute",
-    top: 430,
+    top: 400,
     left: 31,
     width: 328,
     height: 64.2,
@@ -585,7 +584,7 @@ const styles = StyleSheet.create({
   },
   groupView7: {
     position: "absolute",
-    top: 510,
+    top: 480,
     left: 31,
     width: 194,
     height: 64,
@@ -598,13 +597,13 @@ const styles = StyleSheet.create({
   outlineArrowsAltArrowD: {
     position: "absolute",
     left: 195,
-    top: 545,
+    top: 515,
     width: 16.48,
     height: 18,
   },
   image2Icon: {
     position: "absolute",
-    top: 50,
+    top: 40,
     left: 166,
     borderRadius: 15,
     width: 80,
