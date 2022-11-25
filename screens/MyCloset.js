@@ -1,13 +1,15 @@
 import * as React from "react";
 import { useState, useCallback } from "react";
-import { StyleSheet, View, Image, Pressable, Text, Modal, ScrollView } from "react-native";
+import { StyleSheet, View, Image, Pressable, Text, Modal,TextInput, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Alarmcenterbanner from "../components/Alarmcenterbanner";
+
 
 const Mycloset = () => {
   const [notificationContainerVisible, setNotificationContainerVisible] =
     useState(false);
   const navigation = useNavigation();
+  const [search, setsearch] = useState();
 
   const openNotificationContainer = useCallback(() => {
     setNotificationContainerVisible(true);
@@ -18,70 +20,35 @@ const Mycloset = () => {
   }, []);
   return (
     <>
-      <View style={styles.myclosetView}>
-        <View style={styles.view}>
-          <View style={styles.navigationBarView} />
-          <View style={styles.rectangleView} />
-          <View style={styles.frameView}>
-            <Pressable
-              style={styles.HomeIcon}
-              onPress={() => navigation.navigate("MainPage")}
-            >
-              <Image
-                style={styles.icon}
-                resizeMode="cover"
-                source={require("../assets/home.png")}
-              />
-            </Pressable>
-            <Pressable
-              style={[styles.calendarPressable, styles.ml74]}
-              onPress={() => navigation.navigate("OverallStylerReservation")}
-            >
-              <Image
-                style={styles.icon1}
-                resizeMode="cover"
-                source={require("../assets/timetable.png")}
-              />
-            </Pressable>
-            <Image
-              style={[styles.boldEssentionalUIHange, styles.ml74]}
-              resizeMode="cover"
-              source={require("../assets/closet.png")}
-            />
-            <Pressable
-              style={[styles.userPressable, styles.ml74]}
-              onPress={() => navigation.navigate("MyPage")}
-            >
-              <Image
-                style={styles.icon2}
-                resizeMode="cover"
-                source={require("../assets/user.png")}
-              />
-            </Pressable>
-          </View>
-        </View>
+      <Layout title={'My Closet'}>
+      <View style={styles.myclosetView}>      
         <Pressable
           style={styles.rectanglePressable}
           onPress={() => navigation.navigate("AddClothesInfo")}
         />
-        <Text style={styles.text}>새 옷 추가하기</Text>
+        <Text style={styles.addtext}>새 옷 추가하기</Text>
+
         <View style={styles.searchView}>
           <View style={styles.searchfieldView} />
-          <Text style={styles.text1}>Search</Text>
-          <Image
-            style={styles.iconsearch}
-            resizeMode="cover"
-            source={require("../assets/researchicon.png")}
+          <TextInput style={styles.text1}
+          placeholder="Search"
+          onChangeText={newText => setsearch(newText)}
           />
         </View>
+
+      
         <Text style={styles.categoriesText}>Categories</Text>
         <View style={styles.categoriesView}>
-          <Text style={styles.allText}>All</Text>
-          <Image
-            style={styles.ellipseIcon}
-            resizeMode="cover"
-            source={require("../assets/ellipse-21.png")}
-          />
+          <View style={styles.allview}>
+             <Text style={styles.allText}>All</Text>
+             <Image
+               style={styles.ellipseIcon}
+               resizeMode="cover"
+               source={require("../assets/ellipse-21.png")}
+              />
+              <Text style={styles.aText}>A</Text>
+          </View>
+         
           <View style={styles.groupView}>
             <Text style={styles.topsText}>Tops</Text>
             <Image
@@ -95,6 +62,7 @@ const Mycloset = () => {
               source={require("../assets/shirt.png")}
             />
           </View>
+
           <View style={styles.groupView1}>
             <Text style={styles.bottomsText}>Bottoms</Text>
             <Image
@@ -108,6 +76,7 @@ const Mycloset = () => {
               source={require("../assets/pants.png")}
             />
           </View>
+
           <View style={styles.groupView2}>
             <Text style={styles.dressesText}>Dresses</Text>
             <Image
@@ -118,12 +87,14 @@ const Mycloset = () => {
             <Image
               style={styles.outlineEssentionalUIBo}
               resizeMode="cover"
-              source={require("../assets/outline.png")}
+              source={require("../assets/dress.png")}
             />
           </View>
-          <Text style={styles.aText}>A</Text>
-        </View>
+        
         <Text style={styles.topsText1}>Tops</Text>
+        </View>
+
+        {/*옷 카드*/}
         <View style={styles.itemCardView}>
           <View style={styles.cardView} />
           <Text style={styles.text2}>핑크 후드티</Text>
@@ -135,6 +106,7 @@ const Mycloset = () => {
           />
           <View style={styles.cardBorderView} />
         </View>
+
         <View style={styles.itemCard2View}>
           <View style={styles.cardView1} />
           <Text style={styles.text3}>갈색 무스탕</Text>
@@ -146,6 +118,7 @@ const Mycloset = () => {
           />
           <View style={styles.cardBorderView1} />
         </View>
+
         <View style={styles.itemCard3View}>
           <View style={styles.cardView2} />
           <Text style={styles.text4}>하와이안 셔츠</Text>
@@ -157,9 +130,10 @@ const Mycloset = () => {
           />
           <View style={styles.cardBorderView2} />
         </View>
+
         <Pressable
           style={styles.itemCard4Pressable}
-          onPress={() => navigation.navigate("PersonalStylingCalender")}
+          onPress={() => navigation.navigate("personalstylingCalendar")}
         >
           <View style={styles.cardView3} />
           <Text style={styles.text5}>블랙 레더 자켓</Text>
@@ -171,35 +145,8 @@ const Mycloset = () => {
           />
           <View style={styles.cardBorderView3} />
         </Pressable>
-        <View style={styles.menuView}>
-          <View style={styles.rectangleView1} />
-          <Pressable
-            style={styles.notificationPressable}
-            onPress={openNotificationContainer}
-          >
-            <View style={styles.rectangleView2} />
-            <Image
-              style={styles.notificationIcon}
-              resizeMode="cover"
-              source={require("../assets/notification.png")}
-            />
-          </Pressable>
-          <Pressable
-            style={styles.pressable}
-            onPress={() => navigation.navigate("MainPage")}
-          >
-            <View style={styles.rectangleView3} />
-            <Image
-              style={styles.arrowLeft}
-              resizeMode="cover"
-              source={require("../assets/left-arrow.png")}
-            />
-          </Pressable>
-          <View style={styles.view1}>
-            <Text style={styles.wed15SeptemperText}>Add Schedule</Text>
-          </View>
-        </View>
       </View>
+      </Layout>
 
       <Modal
         animationType="fade"
@@ -235,44 +182,13 @@ const styles = StyleSheet.create({
     left: 0,
     top: 0,
   },
-  navigationBarView: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    backgroundColor: "#fff",
-    shadowColor: "rgba(0, 0, 0, 0.06)",
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowRadius: 40,
-    elevation: 40,
-    shadowOpacity: 1,
-    width: 390,
-    height: 63,
-  },
-  rectangleView: {
-    position: "absolute",
-    top: 14.67,
-    left: 227,
-    borderRadius: 10,
-    backgroundColor: "rgba(165, 0, 52, 0.2)",
-    width: 34,
-    height: 29.34,
-  },
   icon: {
     width: "100%",
     height: "100%",
     flexShrink: 0,
     overflow: "hidden",
   },
-  HomeIcon: {
-    position: "relative",
-    width: 24,
-    height: 24,
-  },
+ 
   icon1: {
     borderRadius: 5,
     width: "100%",
@@ -315,16 +231,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  view: {
-    position: "absolute",
-    top: 781,
-    left: 0,
-    width: 390,
-    height: 63,
-  },
+
   rectanglePressable: {
     position: "absolute",
-    top: 197,
+    top: 90,
     left: 103,
     borderRadius: 50,
     backgroundColor: "rgba(165,0,52,1)",
@@ -339,13 +249,12 @@ const styles = StyleSheet.create({
     width: 184,
     height: 40,
   },
-  text: {
+  addtext: {
     position: "absolute",
-    top: 209,
+    top: 100,
     left: 136,
     fontSize: 16,
     letterSpacing: -0.8,
-    fontFamily: "BIZ UDGothic",
     color: "#fff",
     textAlign: "center",
     display: "flex",
@@ -370,11 +279,10 @@ const styles = StyleSheet.create({
     height: "50%",
     width: "77.54%",
     top: "24.32%",
-    left: "16.58%",
+    left: "7%",
     fontSize: 17,
     letterSpacing: -0.41,
     lineHeight: 22,
-    fontFamily: "Roboto",
     color: "#717171",
     textAlign: "left",
     display: "flex",
@@ -394,18 +302,17 @@ const styles = StyleSheet.create({
   },
   searchView: {
     position: "absolute",
-    top: 126,
+    top: 35,
     left: 31,
     width: 328,
     height: 37,
   },
   categoriesText: {
     position: "absolute",
-    top: 251,
+    top: 160,
     left: 31,
     fontSize: 22,
     fontWeight: "600",
-    fontFamily: "Roboto",
     color: "#252525",
     textAlign: "left",
     width: 115,
@@ -415,8 +322,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 57,
     left: 17,
-    fontSize: 13,
-    fontFamily: "NanumGothic",
+    fontSize: 13, 
     color: "#252525",
     textAlign: "center",
   },
@@ -431,8 +337,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 57,
     left: 11,
-    fontSize: 13,
-    fontFamily: "NanumGothic",
+    fontSize: 13, 
     color: "#252525",
     textAlign: "center",
   },
@@ -451,9 +356,16 @@ const styles = StyleSheet.create({
     height: 25,
     overflow: "hidden",
   },
+  allview: {
+    position: "absolute",
+    top: -90,
+    left: 0,
+    width: 50,
+    height: 70,
+  },
   groupView: {
     position: "absolute",
-    top: 0,
+    top: -90,
     left: 65,
     width: 50,
     height: 70,
@@ -462,8 +374,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 57,
     left: 1,
-    fontSize: 13,
-    fontFamily: "NanumGothic",
+    fontSize: 13, 
     color: "#252525",
     textAlign: "center",
   },
@@ -484,7 +395,7 @@ const styles = StyleSheet.create({
   },
   groupView1: {
     position: "absolute",
-    top: 0,
+    top: -90,
     left: 130,
     width: 52,
     height: 70,
@@ -493,8 +404,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 57,
     left: 3,
-    fontSize: 13,
-    fontFamily: "NanumGothic",
+    fontSize: 13, 
     color: "#252525",
     textAlign: "center",
   },
@@ -515,7 +425,7 @@ const styles = StyleSheet.create({
   },
   groupView2: {
     position: "absolute",
-    top: 0,
+    top: -90,
     left: 195,
     width: 50,
     height: 70,
@@ -525,7 +435,7 @@ const styles = StyleSheet.create({
     top: 12,
     left: 18,
     fontSize: 22,
-    fontFamily: "Roboto",
+     
     color: "#fff",
     textAlign: "center",
   },
@@ -543,7 +453,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     letterSpacing: -1.1,
     fontWeight: "600",
-    fontFamily: "Roboto",
+      
     color: "#252525",
     textAlign: "left",
     width: 70,
@@ -562,30 +472,28 @@ const styles = StyleSheet.create({
   },
   text2: {
     position: "absolute",
-    height: "9.48%",
+    height: "13%",
+    top: "73%",  
+    left: "10%",
     width: "81.92%",
-    top: "73.37%",
-    left: "9.04%",
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "700",
-    fontFamily: "Roboto",
     color: "#3d3d3d",
-    textAlign: "left",
+    textAlign: "center",
   },
   mixxoText: {
     position: "absolute",
-    height: "6.52%",
+    height: "15%",
     width: "29.22%",
     top: "85.33%",
-    left: "9.09%",
+    left: "34%",
     fontSize: 12,
-    fontFamily: "Roboto",
     color: "rgba(69, 69, 69, 0.5)",
-    textAlign: "left",
+    textAlign: "center",
   },
   hoodie1Icon: {
     position: "absolute",
-    height: "49.19%",
+    height: "50%",
     width: "52.08%",
     top: "17.93%",
     right: "25.27%",
@@ -611,9 +519,9 @@ const styles = StyleSheet.create({
   },
   itemCardView: {
     position: "absolute",
-    height: "19.43%",
+    height: "23%",
     width: "39.49%",
-    top: "50.83%",
+    top: "48%",
     right: "52.82%",
     bottom: "29.74%",
     left: "7.69%",
@@ -632,34 +540,32 @@ const styles = StyleSheet.create({
   },
   text3: {
     position: "absolute",
-    height: "9.48%",
+    height: "13%",
     width: "81.92%",
-    top: "73.37%",
-    left: "9.04%",
-    fontSize: 18,
+    top: "73%",
+    left: "27%",
+    fontSize: 16,
     fontWeight: "700",
-    fontFamily: "Roboto",
     color: "#3d3d3d",
-    textAlign: "left",
+    textAlign: "ceter",
   },
   romistoryText: {
     position: "absolute",
-    height: "6.52%",
+    height: "17%",
     width: "51.3%",
     top: "85.33%",
-    left: "9.09%",
+    left: "25%",
     fontSize: 12,
-    fontFamily: "Roboto",
     color: "rgba(69, 69, 69, 0.5)",
-    textAlign: "left",
+    textAlign: "center",
   },
   image1Icon: {
     position: "absolute",
-    top: 34,
-    left: 28,
+    top: 23,
+    left: 32,
     borderRadius: 15,
-    width: 90,
-    height: 86,
+    width: 85,
+    height: 80,
   },
   cardBorderView1: {
     position: "absolute",
@@ -676,9 +582,9 @@ const styles = StyleSheet.create({
   },
   itemCard2View: {
     position: "absolute",
-    height: "19.43%",
+    height: "23%",
     width: "39.49%",
-    top: "50.83%",
+    top: "48%",
     right: "7.95%",
     bottom: "29.74%",
     left: "52.56%",
@@ -697,34 +603,32 @@ const styles = StyleSheet.create({
   },
   text4: {
     position: "absolute",
-    height: "9.48%",
+    height: "13%",
     width: "81.92%",
     top: "73.37%",
-    left: "9.04%",
-    fontSize: 18,
+    left: "10%",
+    fontSize: 16,
     fontWeight: "700",
-    fontFamily: "Roboto",
     color: "#3d3d3d",
-    textAlign: "left",
+    textAlign: "center",
   },
   uniqloText: {
     position: "absolute",
-    height: "6.52%",
+    height: "18%",
     width: "29.22%",
     top: "85.33%",
-    left: "9.09%",
+    left: "34%",
     fontSize: 12,
-    fontFamily: "Roboto",
     color: "rgba(69, 69, 69, 0.5)",
-    textAlign: "left",
+    textAlign: "center",
   },
   rectangleIcon: {
     position: "absolute",
-    top: 14,
+    top: 13,
     left: 14,
     borderRadius: 59,
     width: 128,
-    height: 113,
+    height: 90,
   },
   cardBorderView2: {
     position: "absolute",
@@ -741,9 +645,9 @@ const styles = StyleSheet.create({
   },
   itemCard3View: {
     position: "absolute",
-    height: "19.55%",
+    height: "23%",
     width: "39.49%",
-    top: "71.8%",
+    top: "74%",
     right: "52.82%",
     bottom: "8.65%",
     left: "7.69%",
@@ -762,34 +666,33 @@ const styles = StyleSheet.create({
   },
   text5: {
     position: "absolute",
-    height: "9.48%",
+    height: "13%",
     width: "81.92%",
     top: "73.37%",
-    left: "9.04%",
-    fontSize: 18,
+    left: "9%",
+    fontSize: 17,
     fontWeight: "700",
-    fontFamily: "Roboto",
     color: "#3d3d3d",
-    textAlign: "left",
+    textAlign: "center",
   },
+
   lapText: {
     position: "absolute",
-    height: "6.52%",
+    height: "15%",
     width: "29.22%",
     top: "85.33%",
-    left: "9.09%",
+    left: "34%",
     fontSize: 12,
-    fontFamily: "Roboto",
     color: "rgba(69, 69, 69, 0.5)",
-    textAlign: "left",
+    textAlign: "center",
   },
   jacket1Icon: {
     position: "absolute",
-    top: 22,
+    top: 18,
     left: 26,
     borderRadius: 15,
     width: 98,
-    height: 98,
+    height: 85,
   },
   cardBorderView3: {
     position: "absolute",
@@ -806,9 +709,9 @@ const styles = StyleSheet.create({
   },
   itemCard4Pressable: {
     position: "absolute",
-    height: "19.55%",
+    height: "23%",
     width: "39.49%",
-    top: "71.8%",
+    top: "74%",
     right: "7.95%",
     bottom: "8.65%",
     left: "52.56%",
@@ -895,7 +798,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     fontSize: 20,
-    fontFamily: "Roboto",
+               
     color: "#a50034",
     textAlign: "center",
   },

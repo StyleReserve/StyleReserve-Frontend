@@ -4,6 +4,7 @@ import { StyleSheet, View, Image, Pressable, Text, Modal, TextInput } from "reac
 import { useNavigation } from "@react-navigation/native";
 import Addclothfin1 from "../components/Addclothfin1";
 import DropdownList from "../components/DropdownList";
+import Layout from "./layout";
 
 const EditInfo = () => {
   const navigation = useNavigation();
@@ -29,77 +30,17 @@ const EditInfo = () => {
   const closeOutlineArrowsAltArrowD = useCallback(() => {
     setOutlineArrowsAltArrowDVisible(false);
   }, []);
+
   return (
-    <>
+    <Layout title={'Edit Info'}>
       <View style={styles.editInfoView}>
-        <View style={styles.menuView}>
-          <View style={styles.notificationView}>
-            <View style={styles.rectangleView} />
-            <Image
-              style={styles.notificationIcon}
-              resizeMode="cover"
-              source={require("../assets/notification.png")}
-            />
-          </View>
-          <Pressable
-            style={styles.pressable}
-            onPress={() => navigation.navigate("MainPage")}
-          >
-            <View style={styles.rectangleView1} />
-            <Image
-              style={styles.arrowLeft}
-              resizeMode="cover"
-              source={require("../assets/left-arrow.png")}
-            />
-          </Pressable>
-          <View style={styles.view}>
-            <Text style={styles.wed15SeptemperText}>Edit Clothes</Text>
-          </View>
-        </View>
         <View style={styles.view1}>
-          <View style={styles.navigationBarView} />
-          <View style={styles.rectangleView2} />
-          <View style={styles.frameView}>
-            <Image
-              style={styles.brokenEssentionalUIHom}
-              resizeMode="cover"
-              source={require("../assets/home.png")}
-            />
-            <Pressable
-              style={[styles.calendarPressable, styles.ml74]}
-              onPress={() => navigation.navigate("OverallStylerReservation")}
-            >
-              <Image
-                style={styles.icon}
-                resizeMode="cover"
-                source={require("../assets/timetable.png")}
-              />
-            </Pressable>
-            <Image
-              style={[styles.boldEssentionalUIHange, styles.ml74]}
-              resizeMode="cover"
-              source={require("../assets/closet.png")}
-            />
-            <Pressable
-              style={[styles.userPressable, styles.ml74]}
-              onPress={() => navigation.navigate("MyPage")}
-            >
-              <Image
-                style={styles.icon1}
-                resizeMode="cover"
-                source={require("../assets/user.png")}
-              />
-            </Pressable>
-          </View>
         </View>
-        <Text style={styles.addInfoText}>Edit Info</Text>
-
-        <Pressable style={styles.groupPressable} onPress={openGroupContainer}>
-          <View style={styles.rectangleView3} />
-          <Text style={styles.text}>수정하기</Text>
-        </Pressable>
-
-    
+        <Image
+          style={styles.image2Icon}
+          resizeMode="cover"
+          source={require("../assets/image-2.png")}
+        />
         <View style={styles.groupView1}>
           <Text style={styles.text1}>제품명</Text>
           <View style={styles.groupView}>
@@ -152,12 +93,14 @@ const EditInfo = () => {
             source={require("../assets/down-arrow.png")}
           />
         </Pressable>
-        <Image
-          style={styles.image2Icon}
-          resizeMode="cover"
-          source={require("../assets/image-2.png")}
-        />
-      </View>
+        
+         <Pressable style={styles.groupPressable} onPress={openGroupContainer}>
+          <View style={styles.rectangleView3} />
+          <Text style={styles.text}>수정하기</Text>
+        </Pressable>
+        </View>
+      
+      
 
       <Modal animationType="fade" transparent visible={groupContainerVisible}>
         <View style={styles.groupContainerOverlay}>
@@ -182,7 +125,7 @@ const EditInfo = () => {
           <DropdownList onClose={closeOutlineArrowsAltArrowD} />
         </View>
       </Modal>
-    </>
+    </Layout>
   );
 };
 
@@ -488,7 +431,7 @@ const styles = StyleSheet.create({
   },
   groupView1: {
     position: "absolute",
-    top: 328,
+    top: 270,
     left: 31,
     width: 328,
     height: 64.2,
@@ -539,7 +482,7 @@ const styles = StyleSheet.create({
   },
   groupView3: {
     position: "absolute",
-    top: 414,
+    top: 350,
     left: 31,
     width: 328,
     height: 64.2,
@@ -590,7 +533,7 @@ const styles = StyleSheet.create({
   },
   groupView5: {
     position: "absolute",
-    top: 500,
+    top: 430,
     left: 31,
     width: 328,
     height: 64.2,
@@ -642,7 +585,7 @@ const styles = StyleSheet.create({
   },
   groupView7: {
     position: "absolute",
-    top: 586,
+    top: 510,
     left: 31,
     width: 194,
     height: 64,
@@ -655,17 +598,17 @@ const styles = StyleSheet.create({
   outlineArrowsAltArrowD: {
     position: "absolute",
     left: 195,
-    top: 619,
+    top: 545,
     width: 16.48,
     height: 18,
   },
   image2Icon: {
     position: "absolute",
-    top: 175,
+    top: 50,
     left: 166,
     borderRadius: 15,
-    width: 58,
-    height: 138,
+    width: 80,
+    height: 180,
   },
   editInfoView: {
     position: "relative",
